@@ -1,0 +1,88 @@
+* {
+    font-family: "Raleway", sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.productos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px); 
+    background: url('https://i.blogs.es/635f55/maps/1366_2000.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 60px 0; 
+}
+
+.content-box {
+    background-color: #2c3e50;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    width: 60%; 
+    max-width: 90%;
+    margin: 20px;
+    min-height: 600px; 
+}
+
+.content-box * {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+.content-box h3 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 38px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.producto-header, .producto-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.6);
+}
+
+.producto-header {
+    background-color: #3b3f4a;
+    margin-bottom: 10px;
+}
+
+.producto-row {
+    background-color: #34495e;
+    margin-bottom: 10px;
+}
+
+.producto-column {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.add-to-cart-btn {
+    background-color: #FFD046;
+    color: #080710;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e6b800;
+}
