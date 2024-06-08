@@ -1,11 +1,18 @@
 import mysql from 'mysql2/promise';
 
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({path: __dirname+'\\..\\.env'});
+
 const config = {
-    host: process.env.DB_HOST || 'uaaantojos.femat.dev',
-    user: process.env.DB_USER || 'gerardo',
-    database: process.env.DB_NAME || 'UaanojosFederada',
-    password: process.env.DB_PASSWORD || 'FDelgadoG1209M#',
-    port: process.env.DB_PORT || '3306',
+    host: process.env.HOST_DB,
+    user: process.env.USER_DB,
+    database: process.env.DATABASE_DB,
+    password: process.env.PASSWORD_DB,
+    port: process.env.PORT_DB,
 };
 
 let pool;
@@ -19,9 +26,11 @@ export async function crearPool() {
             ...config,
             connectionLimit: 10, // Ajusta según tus necesidades
         });
+        let res = await pool.query('select * from Campus');
+        console.log(res);
         console.log("Pool de conexiones creado correctamente");
     } catch (err) {
-        console.error("Error al crear pool de conexiones: ", err);
+        console.error("Error al crear pool de conexiones: ", err.message);
     }
 }
 

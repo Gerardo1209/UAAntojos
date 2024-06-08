@@ -1,10 +1,8 @@
 import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { obtenerPool } from '../sql/connection.js';
 
-dotenv.config();
 
 const app = express();
 app.use(compression());
