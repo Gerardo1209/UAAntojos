@@ -44,8 +44,8 @@ export async function crearPool() {
         
             }
         });
-        let res = await pool.query('select * from Campus');
-        console.log(res);
+        /*let res = await pool.query('CALL api_spGet_consultarCampusActivos();');
+        console.log(res[0]);*/
         console.log("Pool de conexiones creado correctamente");
     } catch (err) {
         console.error("Error al crear pool de conexiones: ", err.message);
