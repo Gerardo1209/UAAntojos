@@ -1,7 +1,7 @@
 import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
-import { obtenerPool } from '../sql/connection.js';
+import { obtenerPoolConsult, obtenerPoolUpdate } from '../sql/connection.js';
 
 
 const app = express();
