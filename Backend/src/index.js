@@ -1,17 +1,18 @@
 import express from 'express';
+import compression from 'compression';
 import cors from 'cors';
-import mysql from 'mysql2';
 import dotenv from 'dotenv';
+import { obtenerPool } from '../sql/connection.js';
 
 dotenv.config();
 
 const app = express();
+app.use(compression());
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
 const port = process.env.PORT || 3000;
 
-const config = {
-    host: process.env.DB_HOST || 'uaaantojos.femat.dev',
-    user: process.env.DB_USER || 'gerardo',
-    database: process.env.DB_NAME || 'UaantojosFederada',
-    password: process.env.DB_PASSWORD || 'FDelgadoG1209M#',
-    port: process.env.DB_PORT || '3306'
-};
+app.listen(port, () => {
+    console.log("Servidor escuhando en el puerto " + port);
+})
