@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend para UAAntojos",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
@@ -11,5 +12,12 @@
     "pedidos"
   ],
   "author": "Gerardo Femat Delgado",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0",
+    "nodemon": "^3.1.3"
+  }
 }
