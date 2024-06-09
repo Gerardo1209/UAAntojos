@@ -5,6 +5,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
