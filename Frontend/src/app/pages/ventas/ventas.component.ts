@@ -19,7 +19,7 @@ interface Sale {
   imports: [CommonModule, LoadingComponent, RouterModule]
 })
 export class VentasComponent implements OnInit {
-  isVendor: boolean = true; // Cambiar según sea necesario
+  isVendor: boolean = true; //    según sea necesario
   sales: Sale[] = [
     { id: 1, product: 'Producto 1', date: '2024-01-01', amount: 100, buyer: 'Cliente A' },
     { id: 2, product: 'Producto 2', date: '2024-02-01', amount: 150, buyer: 'Cliente B' },

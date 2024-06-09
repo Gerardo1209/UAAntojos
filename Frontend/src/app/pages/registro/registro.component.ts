@@ -31,7 +31,7 @@ export class RegistroComponent {
       return;
     }
     this.passwordMismatch = false;
-    // Aquí puedes manejar la lógica de registro, por ejemplo, enviar los datos a un servidor.
+    // logica para poder enviar datos a un server
     console.log('Datos de registro:', this.registroData);
   }
 }

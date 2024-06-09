@@ -5,10 +5,10 @@ nav {
     font-family: "Raleway", sans-serif;
     display: flex; 
     align-items: center; 
-    position: fixed; /* Hace que la barra de navegación tenga una posición fija */
+    position: fixed; 
     top: 0;
     left: 0;
-    z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
+    z-index: 1000; /* encima de la pag  */
     text-decoration: none;
   }
   
@@ -90,11 +90,11 @@ nav {
       width: 100vw;
       height: 100vh;
       background: #2c3e50;
-      top: 80px; /* Hace que la lista desplegable aparezca justo debajo de la barra de navegación */
+      top: 80px;
       left: -105%;
       text-align: center;
       transition: all .5s;
-      z-index: 9999; /* Asegura que la lista desplegable esté por encima de otros elementos */
+      z-index: 9999; 
     }
     nav ul li {
       display: block;

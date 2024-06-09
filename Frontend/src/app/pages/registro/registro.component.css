@@ -13,15 +13,15 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 120px); /* Ajusta 120px según la altura de tu nav y footer */
+    min-height: calc(100vh - 120px); 
     background: url('https://i.blogs.es/635f55/maps/1366_2000.jpg') no-repeat center center;
     background-size: cover;
-    padding: 60px 0; /* Ajusta según la altura de tu nav y footer */
+    padding: 60px 0; 
 }
 
 form {
     height: auto;
-    width: 60%; /* Incrementa el ancho del contenedor */
+    width: 60%; 
     max-width: 90%;
     background-color: #2c3e50;
     border-radius: 10px;

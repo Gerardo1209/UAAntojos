@@ -11,10 +11,10 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 120px); /* Ajusta 120px según la altura de tu nav y footer */
+    min-height: calc(100vh - 120px); /* evita que se encime en la nav y footer*/
     background: url('https://i.blogs.es/635f55/maps/1366_2000.jpg') no-repeat center center;
     background-size: cover;
-    padding: 60px 0; /* Ajusta según la altura de tu nav y footer */
+    padding: 60px 0;
 }
 
 .content-box {
@@ -23,11 +23,11 @@ body, html {
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
-    width: 60%; /* Incrementa el ancho del contenedor */
+    width: 60%; 
     max-width: 90%;
     margin: 40px 30px;
     padding: 0px 30px 30px 30px;
-    min-height: 600px; /* Incrementa la altura mínima del contenedor */
+    min-height: 600px; 
 }
 
 .content-box * {
