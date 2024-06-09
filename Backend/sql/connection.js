@@ -76,14 +76,14 @@ export async function crearPool() {
 }
 
 export function obtenerPoolConsult() {
-    if (!pool) {
+    if (!poolConsult) {
         throw new Error("El pool de conexiones no ha sido creado. Llama primero a crearPool()");
     }
     return poolConsult;
 }
 
 export function obtenerPoolUpdate() {
-    if (!pool) {
+    if (!poolUpdate) {
         throw new Error("El pool de conexiones no ha sido creado. Llama primero a crearPool()");
     }
     return poolUpdate;
