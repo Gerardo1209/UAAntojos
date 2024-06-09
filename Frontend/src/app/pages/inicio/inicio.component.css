@@ -183,5 +183,8 @@
       width: 90%; /* Ocupa la mayor parte de la pantalla en dispositivos pequeños */
       margin: 0 auto; /* Centra el contenido */
     }
+    .hero-text {
+      margin: 40px;
+    }
   }
   

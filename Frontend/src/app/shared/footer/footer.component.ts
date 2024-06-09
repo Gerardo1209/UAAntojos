@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -8,4 +8,22 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule]
 })
-export class FooterComponent {}
+export class FooterComponent {
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+}

@@ -61,6 +61,7 @@ nav {
     float: right;
     line-height: 80px;
     margin-right: 40px;
+    margin-left: 20px;
     cursor: pointer;
     display: none;
   }
@@ -79,17 +80,18 @@ nav {
     }
   }
   
-  @media (max-width: 858px) {
+  @media (max-width: 1312px) {
     .checkbtn {
       display: block;
     }
     ul {
       position: fixed;
-      width: 100%;
+      padding-left: 0px;
+      width: 100vw;
       height: 100vh;
       background: #2c3e50;
       top: 80px; /* Hace que la lista desplegable aparezca justo debajo de la barra de navegación */
-      left: -100%;
+      left: -105%;
       text-align: center;
       transition: all .5s;
       z-index: 9999; /* Asegura que la lista desplegable esté por encima de otros elementos */
@@ -108,6 +110,11 @@ nav {
     }
     #check:checked ~ ul {
       left: 0;
+    }
+    ul li:checked {
+      ul{
+        left: 0;
+      }
     }
   }
   
