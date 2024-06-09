@@ -1,32 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+}
 
 @Component({
   selector: 'app-carrito',
-  standalone: true, 
-  imports: [CommonModule],  
   templateUrl: './carrito.component.html',
-  styleUrls: ['./carrito.component.css']
+  styleUrls: ['./carrito.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class CarritoComponent implements OnInit {
-  carrito = [
-    { nombre: 'Pan Integral', precio: 25, cantidad: 2 },
-    { nombre: 'Manzana', precio: 10, cantidad: 5 },
-    { nombre: 'Carne de Res', precio: 100, cantidad: 1 },
-    { nombre: 'Pescado', precio: 80, cantidad: 3 },
-  ];
-
-  constructor() { }
+  cart: Product[] = [];
 
   ngOnInit(): void {
+    this.cart = this.getCart();
   }
 
-  realizarCompra(): void {
-    console.log('Compra realizada:', this.carrito);
-    alert('Compra realizada con éxito');
+  getCart(): Product[] {
+    return JSON.parse(sessionStorage.getItem('cart') || '[]');
   }
 
-  calcularTotal(): number {
-    return this.carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+  removeFromCart(productId: number): void {
+    let cart: Product[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
+    cart = cart.filter(product => product.id !== productId);
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    this.cart = cart;
+  }
+
+  clearCart(): void {
+    sessionStorage.removeItem('cart');
+    this.cart = [];
   }
 }

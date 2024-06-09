@@ -1,22 +1,14 @@
-<div class="carrito-container">
-    <div class="content-box">
-        <h3>Carrito de Compras</h3>
-        <div class="carrito-header">
-            <div class="carrito-column">Nombre</div>
-            <div class="carrito-column">Precio</div>
-            <div class="carrito-column">Cantidad</div>
-            <div class="carrito-column">Subtotal</div>
-        </div>
-        <div class="carrito-row" *ngFor="let producto of carrito">
-            <div class="carrito-column">{{ producto.nombre }}</div>
-            <div class="carrito-column">{{ producto.precio | currency }}</div>
-            <div class="carrito-column">{{ producto.cantidad }}</div>
-            <div class="carrito-column">{{ (producto.precio * producto.cantidad) | currency }}</div>
-        </div>
-        <div class="total">
-            <div class="total-label">Total:</div>
-            <div class="total-value">{{ calcularTotal() | currency }}</div>
-        </div>
-        <button class="comprar-btn" (click)="realizarCompra()">Realizar Compra</button>
+<div class="cart-container">
+    <h1>Tu Carrito</h1>
+    <div *ngIf="cart.length === 0">
+      <p>El carrito está vacío.</p>
     </div>
-</div>
+    <div *ngIf="cart.length > 0" class="cart-list">
+      <div *ngFor="let product of cart" class="cart-item">
+        <p>{{ product.name }} - ${{ product.price }} x {{ product.quantity }}</p>
+        <button (click)="removeFromCart(product.id)">Eliminar</button>
+      </div>
+      <button (click)="clearCart()" class="clear-cart-button">Vaciar Carrito</button>
+    </div>
+  </div>
+  
