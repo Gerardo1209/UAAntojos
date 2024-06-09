@@ -1,12 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { LoadingComponent } from '../../shared/loading/loading.component';
+import { RouterModule } from '@angular/router';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-vendedor',
-  standalone: true,
-  imports: [],
   templateUrl: './vendedor.component.html',
-  styleUrl: './vendedor.component.css'
+  styleUrls: ['./vendedor.component.css'],
+  standalone: true,
+  imports: [CommonModule, LoadingComponent, RouterModule]
 })
-export class VendedorComponent {
+export class VendedorComponent implements OnInit {
+  vendorId: number = 0;
+  isLoading: boolean = true; // Añadir esta línea
+  products: Product[] = [
+    { id: 1, name: 'Producto 1', description: 'Descripción del producto 1', price: 100.00 },
+    { id: 2, name: 'Producto 2', description: 'Descripción del producto 2', price: 150.00 },
+    { id: 3, name: 'Producto 3', description: 'Descripción del producto 3', price: 200.00 }
+  ];
 
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.vendorId = +this.route.snapshot.paramMap.get('id')!;
+   
+    this.isLoading = false; 
+  }
 }

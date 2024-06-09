@@ -1,0 +1,56 @@
+.sales-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .sales-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .sale-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 250px;
+    transition: transform 0.3s;
+  }
+  
+  .sale-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .sale-details {
+    padding: 10px;
+  }
+  
+  .sale-product {
+    font-size: 1.5em;
+    margin: 0;
+  }
+  
+  .sale-date, .sale-amount, .sale-buyer {
+    color: #666;
+    font-size: 0.9em;
+    margin: 10px 0;
+  }
+  
+  .sale-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+  }
+  
+  .sale-button:hover {
+    background-color: #0056b3;
+  }
+  
