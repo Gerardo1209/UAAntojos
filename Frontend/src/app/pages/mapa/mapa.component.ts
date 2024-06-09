@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./mapa.component.css'],
   standalone: true,
   imports: [CommonModule, LoadingComponent, RouterModule]
-  
 })
 export class MapaComponent implements AfterViewInit {
   locationAccess = false;
@@ -49,7 +48,14 @@ export class MapaComponent implements AfterViewInit {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    L.marker([lat, lng]).addTo(map)
+    const customIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/5860/5860579.png',
+      iconSize: [38, 38], 
+      iconAnchor: [19, 38], 
+      popupAnchor: [0, -38] 
+    });
+
+    L.marker([lat, lng], { icon: customIcon }).addTo(map)
       .bindPopup('Estás aquí')
       .openPopup();
   }
