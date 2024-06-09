@@ -22,13 +22,13 @@
   }
   
   .hero-text-right {
-    width: 50%; /* Ocupa la mitad derecha de la pantalla */
-    margin-left: auto; /* Empuja el contenido hacia la derecha */
-    text-align: left; /* Alinea el texto a la izquierda */
+    width: 50%; 
+    margin-left: auto; 
+    text-align: left; 
   }
   
   .hero-text button {
-    background-color: #FFD046; /* Color del botón */
+    background-color: #FFD046; 
     border: none;
     color: black;
     padding: 15px 32px;
@@ -38,12 +38,12 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 12px; /* Bordes redondeados */
-    transition: background-color 0.3s ease; /* Transición para el cambio de color */
+    border-radius: 12px; 
+    transition: background-color 0.3s ease; 
   }
   
   .hero-text button:hover {
-    background-color: #e6be2f; /* Color al pasar el ratón por encima */
+    background-color: #e6be2f;
   }
   
   .info-section {
@@ -134,11 +134,11 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* Permite que los miembros se ajusten en líneas nuevas si es necesario */
+    flex-wrap: wrap; 
   }
   
   .team-member {
-    flex: 1 1 calc(25% - 20px); /* Hace que cada miembro ocupe aproximadamente 25% del ancho con un margen */
+    flex: 1 1 calc(25% - 20px); 
     max-width: 200px;
     text-align: center;
   }
@@ -146,7 +146,7 @@
   .team-member img {
     width: 100px;
     height: 100px;
-    border-radius: 50%; /* Hace la imagen circular */
+    border-radius: 50%; 
     margin-bottom: 10px;
   }
   
@@ -162,7 +162,7 @@
   
   @media (max-width: 768px) {
     .team-member {
-      flex: 1 1 100%; /* En pantallas pequeñas, cada miembro ocupa el 100% del ancho */
+      flex: 1 1 100%; 
       max-width: none;
     }
   
@@ -180,8 +180,8 @@
     }
   
     .hero-text-right {
-      width: 90%; /* Ocupa la mayor parte de la pantalla en dispositivos pequeños */
-      margin: 0 auto; /* Centra el contenido */
+      width: 90%; 
+      margin: 0 auto; 
     }
     .hero-text {
       margin: 40px;

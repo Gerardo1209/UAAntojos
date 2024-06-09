@@ -1,1 +1,20 @@
-<p>productos works!</p>
+
+<div class="productos-container">
+    <div class="content-box">
+        <h3>Lista de Productos</h3>
+        <div class="producto-header">
+            <div class="producto-column">Nombre</div>
+            <div class="producto-column">Precio</div>
+            <div class="producto-column">Categoría</div>
+            <div class="producto-column">Añadir al Carrito</div>
+        </div>
+        <div class="producto-row" *ngFor="let producto of productos">
+            <div class="producto-column">{{ producto.nombre }}</div>
+            <div class="producto-column">{{ producto.precio | currency }}</div>
+            <div class="producto-column">{{ producto.categoria }}</div>
+            <div class="producto-column">
+                <button class="add-to-cart-btn" (click)="addToCart(producto)">Añadir al Carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
