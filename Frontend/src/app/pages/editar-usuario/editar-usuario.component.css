@@ -7,7 +7,6 @@ body, html {
     padding: 0;
     height: 100%;
 }
-
 .editar-usuario-container {
     display: flex;
     justify-content: center;
@@ -26,7 +25,8 @@ body, html {
     padding: 50px 35px;
     width: 60%; /* Incrementa el ancho del contenedor */
     max-width: 90%;
-    margin: 20px;
+    margin: 40px 30px;
+    padding: 0px 30px 30px 30px;
     min-height: 600px; /* Incrementa la altura mínima del contenedor */
 }
 
