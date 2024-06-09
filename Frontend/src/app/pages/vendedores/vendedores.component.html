@@ -3,14 +3,14 @@
         <h3>Lista de Vendedores</h3>
         <div class="vendedor-header">
             <div class="vendedor-column">Nombre</div>
-            <div class="vendedor-column">Ubicación</div>
+            <div class="vendedor-column">Campus</div>
             <div class="vendedor-column">#Ventas</div>
             <div class="vendedor-column">Ver sus productos</div>
         </div>
         <div class="vendedor-row" *ngFor="let vendedor of vendedores">
             <div class="vendedor-column">{{ vendedor.nombre }}</div>
-            <div class="vendedor-column">{{ vendedor.ubicacion }}</div>
-            <div class="vendedor-column">{{ vendedor.ventas }}</div>
+            <div class="vendedor-column"><span class="ver-text">Campus: </span>{{ vendedor.ubicacion }}</div>
+            <div class="vendedor-column"><span class="ver-text">Ventas: </span>{{ vendedor.ventas }}</div>
             <div class="vendedor-column">
                 <button class="ver-productos-btn">Ver sus productos</button>
             </div>

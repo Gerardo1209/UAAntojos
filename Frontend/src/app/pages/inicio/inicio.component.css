@@ -183,5 +183,8 @@
       width: 90%; 
       margin: 0 auto; 
     }
+    .hero-text {
+      margin: 40px;
+    }
   }
   
