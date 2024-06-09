@@ -1,62 +1,99 @@
+* {
+    font-family: "Raleway", sans-serif;
+}
+
 .products-container {
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    background: url('https://i.blogs.es/635f55/maps/1366_2000.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 60px 0;
+}
+
+.content-box {
+    background-color: #2c3e50;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    width: 70%;
+    max-width: 90%;
+    margin: 20px;
+    min-height: 600px;
+}
+
+.content-box * {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+.content-box h3 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 38px;
     text-align: center;
-  }
-  
-  .product-list {
+    margin-bottom: 20px;
+}
+
+.product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  
-  .product-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card {
+    background: #34495e;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.6);
     margin: 10px;
-    padding: 15px;
+    padding: 20px;
     width: 250px;
     transition: transform 0.3s;
-  }
-  
-  .product-card:hover {
+    text-align: center;
+}
+
+.product-card:hover {
     transform: scale(1.05);
-  }
-  
-  .product-details {
+}
+
+.product-details {
     padding: 10px;
-  }
-  
-  .product-name {
+}
+
+.product-name {
     font-size: 1.5em;
     margin: 0;
-  }
-  
-  .product-description {
-    color: #666;
+}
+
+.product-description {
+    color: #ddd;
     font-size: 0.9em;
     margin: 10px 0;
-  }
-  
-  .product-price {
-    color: #000;
+}
+
+.product-price {
+    color: #FFD046;
     font-size: 1.2em;
     font-weight: bold;
-  }
-  
-  .product-button {
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
+}
+
+.product-button {
+    background-color: #FFD046;
+    color: #080710;
     padding: 10px 15px;
-    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    outline: none;
     transition: background-color 0.3s;
-  }
-  
-  .product-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.product-button:hover {
+    background-color: #e6b800;
+}

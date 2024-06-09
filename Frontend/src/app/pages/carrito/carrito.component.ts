@@ -18,9 +18,11 @@ interface Product {
 })
 export class CarritoComponent implements OnInit {
   cart: Product[] = [];
+  total: number = 0;
 
   ngOnInit(): void {
     this.cart = this.getCart();
+    this.calculateTotal();
   }
 
   getCart(): Product[] {
@@ -32,10 +34,16 @@ export class CarritoComponent implements OnInit {
     cart = cart.filter(product => product.id !== productId);
     sessionStorage.setItem('cart', JSON.stringify(cart));
     this.cart = cart;
+    this.calculateTotal();
   }
 
   clearCart(): void {
     sessionStorage.removeItem('cart');
     this.cart = [];
+    this.total = 0;
+  }
+
+  calculateTotal(): void {
+    this.total = this.cart.reduce((acc, product) => acc + (product.price * product.quantity), 0);
   }
 }
