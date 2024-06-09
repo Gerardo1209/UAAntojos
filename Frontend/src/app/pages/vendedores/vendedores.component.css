@@ -88,3 +88,40 @@ body, html {
 .ver-productos-btn:hover {
     background-color: #e6b800;
 }
+.ver-text{
+    font-weight: bolder;
+    display: none;
+}
+@media (max-width: 768px) {
+    .ver-text{
+        display: contents;
+    }
+    .vendedor-header{
+        display: none;
+    }   
+    .vendedor-header {
+        display: none;
+    }
+
+    .vendedor-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .vendedor-column {
+        text-align: left;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .vendedor-column:last-child {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .ver-productos-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
