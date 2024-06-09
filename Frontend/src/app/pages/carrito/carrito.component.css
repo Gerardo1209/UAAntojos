@@ -94,3 +94,23 @@
 .clear-cart-button:hover {
     background-color: #e0a800;
 }
+
+@media (max-width: 768px) {
+
+    .subtotal{
+        display: none;
+    }
+
+    .carrito-column {
+        text-align: left;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .carrito-column:last-child {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
+}

@@ -99,9 +99,6 @@ body, html {
     .vendedor-header{
         display: none;
     }   
-    .vendedor-header {
-        display: none;
-    }
 
     .vendedor-row {
         flex-direction: column;

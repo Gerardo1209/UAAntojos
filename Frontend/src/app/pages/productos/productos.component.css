@@ -1,4 +1,4 @@
-* {
+{
     font-family: "Raleway", sans-serif;
 }
 
@@ -96,4 +96,38 @@
 
 .product-button:hover {
     background-color: #e6b800;
+}
+.ver-text{
+    font-weight: bolder;
+    display: none;
+}
+@media (max-width: 768px) {
+    .ver-text{
+        display: contents;
+    }
+    .producto-header{
+        display: none;
+    }  
+
+    .producto-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .producto-column {
+        text-align: left;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .producto-column:last-child {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .product-button {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
