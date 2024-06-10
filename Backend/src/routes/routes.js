@@ -5,10 +5,12 @@ import { obtenerPoolConsult, obtenerPoolUpdate } from '../../sql/connection.js';
 import vendedor from './vendedor.js';
 import campus from './campus.js';
 import comercio from './comercio.js';
+import pedido from './pedido.js';
 
 router.use('/comercio', comercio);
 router.use('/campus', campus);
 router.use('/vendedor', vendedor);
+router.use('/pedido', pedido);
 
 router.post('/login', async(req, res) => {
     try{
@@ -36,14 +38,15 @@ router.post('/registro', async(req, res) => {
         if(!req.body.contra) throw new Error("No se envió la contraseña del usuario");
         if(!req.body.tipo) throw new Error("No se envió el tipo de usuario");
         const pool = await obtenerPoolUpdate();
-        const result = await pool.query('CALL api_spPost_registrarNuevoUsuario(?,?,?,?,?,?)',[req.body.nombres,req.body.apPaterno, req.body.apMaterno,req.body.correo, req.body.tipo]);
-        console.log(result[0]);
-        if(result[0][0][0]){
-            res.send({success: true, data:result[0][0]});
+        const result = await pool.query("CALL api_spPost_registrarNuevoUsuario(?, ?, ?, ?, ?, ?);",[req.body.nombres,req.body.apPaterno, req.body.apMaterno,req.body.correo,req.body.contra,req.body.tipo]);
+        console.log(result);
+        if(result[0][0][0].response == "SUCCESS"){
+            res.send({success: true, data: "Usuario creado correctamente, ahora puede inicar sesión"});
+        }else if(result[0][0][0].response == "Usuario Existente"){
+            throw new Error("Ya existe un usuario con el correo proporcionado");
         }else{
-            throw new Error("Hubo un error en login");
+            throw new Error("Ocurrio un error al intentar registrar el usuario");
         }
-        
     }catch(err){
         res.send({success: false, data:err.message});
     }
