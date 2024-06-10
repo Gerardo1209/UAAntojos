@@ -1,49 +1,65 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-interface Product {
+interface Producto {
   id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  vendedor: string;
+  precio: number;
+  cantidad: number;
 }
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
-  styleUrls: ['./carrito.component.css'],
-  standalone: true,
-  imports: [CommonModule]
+  styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
-  cart: Product[] = [];
+  carrito: Producto[] = [];
   total: number = 0;
 
+  constructor() { }
+
   ngOnInit(): void {
-    this.cart = this.getCart();
-    this.calculateTotal();
+    this.cargarCarrito();
+    this.calcularTotal();
   }
 
-  getCart(): Product[] {
-    return JSON.parse(sessionStorage.getItem('cart') || '[]');
+  cargarCarrito(): void {
+    this.carrito = JSON.parse(sessionStorage.getItem('cart') || '[]');
   }
 
-  removeFromCart(productId: number): void {
-    let cart: Product[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
-    cart = cart.filter(product => product.id !== productId);
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-    this.cart = cart;
-    this.calculateTotal();
+  calcularTotal(): void {
+    this.total = this.carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
   }
 
-  clearCart(): void {
+  eliminarProducto(producto: Producto): void {
+    this.carrito = this.carrito.filter(p => p.id !== producto.id);
+    sessionStorage.setItem('cart', JSON.stringify(this.carrito));
+    this.calcularTotal();
+    Swal.fire({
+      title: 'Producto eliminado',
+      text: `${producto.nombre} ha sido eliminado del carrito.`,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  vaciarCarrito(): void {
+    this.carrito = [];
     sessionStorage.removeItem('cart');
-    this.cart = [];
-    this.total = 0;
-  }
-
-  calculateTotal(): void {
-    this.total = this.cart.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+    this.calcularTotal();
+    Swal.fire({
+      title: 'Carrito vaciado',
+      text: 'Todos los productos han sido eliminados del carrito.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }

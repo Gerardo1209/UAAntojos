@@ -1,19 +1,16 @@
 <div class="cart-container">
     <div class="content-box">
       <h3>Tu Carrito</h3>
-      <div *ngIf="cart.length === 0">
-        <p>El carrito está vacío.</p>
-      </div>
-      <div *ngIf="cart.length > 0" class="cart-list">
-        <div *ngFor="let product of cart" class="cart-item">
-          <p>{{ product.name }} - ${{ product.price }} x {{ product.quantity }}</p>
-          <button (click)="removeFromCart(product.id)">Eliminar</button>
+      <div class="cart-list">
+        <div class="cart-item" *ngFor="let producto of carrito">
+          <p>{{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}</p>
+          <button (click)="eliminarProducto(producto)">Eliminar</button>
         </div>
-        <div class="total">
-          <p>Total: ${{ total }}</p>
-        </div>
-        <button (click)="clearCart()" class="clear-cart-button">Vaciar Carrito</button>
       </div>
+      <div class="total">
+        <p>Total: {{ total | currency }}</p>
+      </div>
+      <button class="clear-cart-button" (click)="vaciarCarrito()">Vaciar Carrito</button>
     </div>
   </div>
   

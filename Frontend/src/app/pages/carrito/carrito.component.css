@@ -1,8 +1,8 @@
 * {
     font-family: "Raleway", sans-serif;
-}
-
-.cart-container {
+  }
+  
+  .cart-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,9 +10,9 @@
     background: url('https://i.blogs.es/635f55/maps/1366_2000.jpg') no-repeat center center;
     background-size: cover;
     padding: 60px 0;
-}
-
-.content-box {
+  }
+  
+  .content-box {
     background-color: #2c3e50;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -22,30 +22,30 @@
     max-width: 90%;
     margin: 20px;
     min-height: 600px;
-}
-
-.content-box * {
+  }
+  
+  .content-box * {
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
-}
-
-.content-box h3 {
+  }
+  
+  .content-box h3 {
     font-size: 28px;
     font-weight: 500;
     line-height: 38px;
     text-align: center;
     margin-bottom: 20px;
-}
-
-.cart-list {
+  }
+  
+  .cart-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.cart-item {
+  }
+  
+  .cart-item {
     background: #34495e;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(8, 7, 16, 0.6);
@@ -53,14 +53,14 @@
     padding: 20px;
     width: 300px;
     text-align: left;
-}
-
-.cart-item p {
+  }
+  
+  .cart-item p {
     margin: 0;
     padding: 5px 0;
-}
-
-.cart-item button {
+  }
+  
+  .cart-item button {
     background-color: #dc3545;
     border: none;
     border-radius: 4px;
@@ -68,19 +68,19 @@
     cursor: pointer;
     padding: 5px 10px;
     margin-top: 10px;
-}
-
-.cart-item button:hover {
+  }
+  
+  .cart-item button:hover {
     background-color: #c82333;
-}
-
-.total {
+  }
+  
+  .total {
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 20px;
-}
-
-.clear-cart-button {
+  }
+  
+  .clear-cart-button {
     background-color: #ffc107;
     border: none;
     border-radius: 4px;
@@ -89,8 +89,9 @@
     padding: 10px 15px;
     margin-top: 20px;
     text-transform: uppercase;
-}
-
-.clear-cart-button:hover {
+  }
+  
+  .clear-cart-button:hover {
     background-color: #e0a800;
-}
+  }
+  
