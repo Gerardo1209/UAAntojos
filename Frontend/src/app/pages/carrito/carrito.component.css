@@ -94,4 +94,56 @@
   .clear-cart-button:hover {
     background-color: #e0a800;
   }
+  .pay-button {
+    background-color: #077bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-top: 20px;
+    margin-right: 20px;
+    text-transform: uppercase;
+  }
   
+  .pay-button:hover {
+    background-color: rgb(0, 71, 224);
+  }
+
+  .btns{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .resumen select {
+    height: 35px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .resumen select option {
+    background-color: #34495e; /* Color de fondo de las opciones */
+    }
+
+    .resumen select option:hover {
+        background-color: #263a4e; /* Color de fondo de las opciones */
+        color: black;
+    }
+    @media (max-width: 896px) {
+        .resumen {
+            flex-basis: 100%;
+    
+          }
+          .resumen select{
+            flex-basis: 100%;
+            margin-bottom: 20px;
+          }
+          .btns{
+            flex-basis: 100%;
+            margin-bottom: 20px;
+          }
+      }

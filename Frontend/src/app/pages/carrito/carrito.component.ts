@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpService } from '../../services/http.service';
+import { MetodoPago } from '../../models/metodoPago.model';
+import { CrearPedidoModel } from '../../models/pedido.model';
 
 interface Producto {
   id: number;
@@ -23,12 +26,18 @@ interface Producto {
 export class CarritoComponent implements OnInit {
   carrito: Producto[] = [];
   total: number = 0;
-
-  constructor() { }
+  metodoPago:MetodoPago[] = [];
+  tipoPago!:MetodoPago;
+  constructor(private httpClient:HttpService) { }
 
   ngOnInit(): void {
     this.cargarCarrito();
     this.calcularTotal();
+    this.obtenerMetodoPago();
+  }
+
+  async obtenerMetodoPago(){
+    this.metodoPago = await this.httpClient.getMetodoPago()
   }
 
   cargarCarrito(): void {
@@ -61,5 +70,13 @@ export class CarritoComponent implements OnInit {
       icon: 'success',
       confirmButtonText: 'OK'
     });
+  }
+  cambiarPago(tipo:MetodoPago){
+    this.tipoPago = tipo;
+  }
+  pagarCarritos(){
+    var crearPedido: CrearPedidoModel;
+
+
   }
 }

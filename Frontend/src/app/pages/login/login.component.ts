@@ -29,8 +29,10 @@ export class LoginComponent {
     });
   }
 
+  loading:boolean = false;
   onSubmit() {
     if (this.form.valid) {
+      this.loading = true;
       const correo = this.form.value.email;
       const contra = this.form.value.password;
       var user:usuarioLogin;
@@ -65,7 +67,8 @@ export class LoginComponent {
                 sessionStorage.setItem("usr",usrJSON)
                 this.loginEvent.emit();
                 this.router.navigateByUrl("/")
-              } 
+              }
+              this.loading = false;
             // Manejar el éxito del login, por ejemplo, redirigir al dashboard
           } else {
             console.error('Error en login', response);

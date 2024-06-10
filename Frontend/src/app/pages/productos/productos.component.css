@@ -47,6 +47,7 @@
   
   .filtros {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
@@ -66,8 +67,18 @@
     font-size: 14px;
     color: #ffffff;
     margin-left: 10px;
+    margin-right: 10px;
   }
-  
+  .filtros select option {
+    background-color: #34495e; /* Color de fondo de las opciones */
+    }
+
+    .filtros select option:hover {
+        background-color: #263a4e; /* Color de fondo de las opciones */
+        color: black;
+    }
+
+        
   .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -126,4 +137,13 @@
   .product-button:hover {
     background-color: #e6b800;
   }
-  
+  @media (max-width: 896px) {
+    .filtros {
+        flex-basis: 100%;
+
+      }
+      .filtros select{
+        flex-basis: 100%;
+        margin-bottom: 20px;
+      }
+  }

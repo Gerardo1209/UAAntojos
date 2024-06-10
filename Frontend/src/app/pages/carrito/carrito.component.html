@@ -7,10 +7,24 @@
           <button (click)="eliminarProducto(producto)">Eliminar</button>
         </div>
       </div>
-      <div class="total">
-        <p>Total: {{ total | currency }}</p>
-      </div>
-      <button class="clear-cart-button" (click)="vaciarCarrito()">Vaciar Carrito</button>
+      <div class="resumen">
+          <div class="total">
+              <p>Total: {{ total | currency }}</p>
+          </div>
+          <div>
+            <label for="tipoPago">Pago por:</label>
+                <select id="tipoPago" >
+                    <option *ngFor="let tipo of metodoPago " [value]="tipo" (change)="cambiarPago(tipo)">{{ tipo }}</option>
+                  </select>
+            
+          </div>
+          <div class="btns">
+            <button class="pay-button" (click)="pagarCarritos()">Pagar</button>
+            <button class="clear-cart-button" (click)="vaciarCarrito()">Vaciar Carrito</button>
+          </div>
+          
+       </div>
     </div>
+      
   </div>
   

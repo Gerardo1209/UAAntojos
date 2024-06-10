@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit{
   @Input() evento!:Observable<any>;
   usrVendedor:boolean = true;
   usrCliente:boolean = true;
-  usrActive: boolean = true;
+  usrActive: boolean = false;
 
   constructor(private router: Router,private alert:AlertService) {
     this.router.events.subscribe((event) => {
@@ -63,11 +63,14 @@ export class HeaderComponent implements OnInit{
   verifyCart(){
     if(this.usuario){
       if(this.usuario.tipo == 1){
-        this.usrCliente = true
-      }
-      else{
         this.usrCliente = false
       }
+      else{
+        this.usrCliente = true
+      }
+    }
+    else{
+      this.usrCliente = true;
     }
   }
   verifyUsr(){
@@ -78,6 +81,9 @@ export class HeaderComponent implements OnInit{
       else{
         this.usrActive = true
       }
+    }
+    else{
+      this.usrActive = true;
     }
   }
   logout(){

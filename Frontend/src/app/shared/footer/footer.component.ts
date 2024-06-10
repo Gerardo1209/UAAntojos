@@ -12,14 +12,24 @@ import { AlertService } from '../../services/alert.service';
   imports: [RouterModule]
 })
 export class FooterComponent {
-  usuario!:usuarioLogin;
+  usuario!:usuarioLogin|null;
   @Input() evento!:Observable<any>;
+  
+  usrVendedor:boolean = true;
+  usrCliente:boolean = true;
+  usrActive: boolean = false;
   private eventSubscription!:Subscription;
   ngOnInit():void{
     this.eventSubscription = this.evento.subscribe(() => {
       this.obtenerSesion();
+      
+      this.verifyCart();
+      this.verifyUsr();
     });
     this.obtenerSesion();
+    
+    this.verifyCart();
+    this.verifyUsr();
   }
 
   obtenerSesion(){
@@ -50,36 +60,39 @@ export class FooterComponent {
 
   
 
-  verifyCart():boolean{
-    var ret = true;
+  verifyCart(){
     if(this.usuario){
       if(this.usuario.tipo == 1){
-        ret = false
+        this.usrCliente = false
       }
       else{
-        ret = true
+        this.usrCliente = true
       }
     }
-    
-    return ret;
+    else{
+      this.usrCliente = true;
+    }
   }
-  verifyUsr():boolean{
-    var ret = true;
+  verifyUsr(){
     if(this.usuario){
       if(this.usuario.tipo == 1 || this.usuario.tipo == 2){
-        ret = false
+        this.usrActive = false
       }
       else{
-        ret = true
+        this.usrActive = true
       }
     }
-    
-    return ret;
+    else{
+      this.usrActive = true;
+    }
   }
   logout(){
     if(this.usuario){
       sessionStorage.removeItem("usr");
-      this.alert.success("Se ha cerrado sesión exitosamente")
+      this.alert.success("Se ha cerrado sesión exitosamente");
+      this.usuario = null;
+      this.verifyCart();
+      this.verifyUsr();
       this.router.navigate(['/']);
     }
   }

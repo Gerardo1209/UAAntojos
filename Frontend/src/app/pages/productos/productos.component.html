@@ -16,9 +16,9 @@
       <div class="product-list">
         <div class="product-card" *ngFor="let producto of productosFiltrados">
           <div class="product-details">
-            <h4 class="product-name">{{ producto.nombre }}</h4>
-            <p class="product-description">{{ producto.descripcion }}</p>
-            <p class="product-price">{{ producto.precio | currency }}</p>
+            <h4 class="product-name">{{ producto.Nombre }}</h4>
+            <p class="product-description">{{ producto.Descripcion }}</p>
+            <p class="product-price">{{ producto.Precio | currency }}</p>
             <button class="product-button" (click)="anadirAlCarrito(producto)">Añadir al Carrito</button>
           </div>
         </div>

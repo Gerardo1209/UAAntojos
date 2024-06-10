@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { RouterModule } from '@angular/router';
+import { HttpService } from '../../services/http.service';
+import { Producto } from '../../models/producto.model';
 
 interface Product {
   id: number;
@@ -27,11 +29,17 @@ export class VendedorComponent implements OnInit {
     { id: 3, name: 'Producto 3', description: 'Descripción del producto 3', price: 200.00 }
   ];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private httpService:HttpService) { }
 
   ngOnInit(): void {
     this.vendorId = +this.route.snapshot.paramMap.get('id')!;
    
     this.isLoading = false; 
+  }
+
+  productosVendedor:Producto[] = [];
+  
+  async getProductosDeVendedor(){
+    this.productosVendedor = await this.httpService.getProductosPorVendedor(this.vendorId);
   }
 }

@@ -6,11 +6,13 @@ import vendedor from './vendedor.js';
 import campus from './campus.js';
 import comercio from './comercio.js';
 import pedido from './pedido.js';
+import producto from './producto.js';
 
 router.use('/comercio', comercio);
 router.use('/campus', campus);
 router.use('/vendedor', vendedor);
 router.use('/pedido', pedido);
+router.use('/producto', producto);
 
 router.post('/login', async(req, res) => {
     try{

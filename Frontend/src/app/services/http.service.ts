@@ -7,6 +7,12 @@ import { AlertService } from './alert.service';
 import { usuarioLogin } from '../models/cliente.model';
 import { Comercio } from '../models/comercio.model';
 import { EdificioCampus } from '../models/edificioCampus.model';
+import { Categoria } from '../models/categoria.model';
+import { MetodoPago } from '../models/metodoPago.model';
+import { Producto } from '../models/producto.model';
+import { RegistroUsuarioModel } from '../models/registroUsuarioModel';
+import { CrearPedidoModel } from '../models/pedido.model';
+import { CrearDetallePedido } from '../models/pedido.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +25,40 @@ export class HttpService {
     private httpClient:HttpClient,
     private alertService:AlertService
   ) { }
+
+
+  postRegisterUser( newUser : RegistroUsuarioModel ):Observable<ResponseObject<string>>{
+    return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/registro", newUser);
+  }
+
+  postCreateOrder( newOrder : CrearPedidoModel ):Observable<ResponseObject<string>>{
+    return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear", newOrder);
+  }
+
+  postCreateDetailOrder( newDetailOrder : CrearDetallePedido ):Observable<ResponseObject<string>>{
+    return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear/detalle", newDetailOrder);
+  }
+
+
+  async getProductosActivos():Promise<Producto[]>{
+    let vendedores: Producto[] = [];
+    try{
+      await (<Observable<ResponseObject<Producto[]>>> this.httpClient.get(this.baseURL + "/producto/activos"))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          vendedores = res.data;
+        }else{
+          this.alertService.error("Error al obtener los productos");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      
+      //this.alertService.error(err);
+    }
+    return vendedores;
+  }
+
 
   async getVendedores():Promise<Vendedor[]>{
     let vendedores: Vendedor[] = [];
@@ -37,6 +77,24 @@ export class HttpService {
       //this.alertService.error(err);
     }
     return vendedores;
+  }
+
+  async getProductosPorVendedor(idComercio:number):Promise<Producto[]>{
+    let producto: Producto[] = [];
+    try{
+      await (<Observable<ResponseObject<Producto[]>>> this.httpClient.get(this.baseURL + "/comercio/productos/" + idComercio))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          producto = res.data;
+        }else{
+          this.alertService.error("Error al obtener los productos por vendedor");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return producto;
   }
 
   async getComercios():Promise<Comercio[]>{
@@ -73,6 +131,42 @@ export class HttpService {
       //this.alertService.error(err);
     }
     return edifico;
+  }
+
+  async getMetodoPago():Promise<MetodoPago[]>{
+    let metodoPago: MetodoPago[] = [];
+    try{
+      await (<Observable<ResponseObject<MetodoPago[]>>> this.httpClient.get(this.baseURL + "/pedido/metodopago"))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          metodoPago = res.data;
+        }else{
+          this.alertService.error("Error al obtener el edificio");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return metodoPago;
+  }
+
+  async getCategorias():Promise<Categoria[]>{
+    let categoria: Categoria[] = [];
+    try{
+      await (<Observable<ResponseObject<Categoria[]>>> this.httpClient.get(this.baseURL + "/producto/categorias"))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          categoria = res.data;
+        }else{
+          this.alertService.error("Error al obtener el edificio");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return categoria;
   }
 
   login(correo:string, contra:string,token:string="token100%realnofake" ):Observable<any>{

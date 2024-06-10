@@ -14,13 +14,13 @@
         <h2>Links rápidos</h2>
         <ul>
           <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
-          <li><a routerLink="/login" routerLinkActive="active" [hidden]="!verifyUsr()">Login</a></li>
-          <li><a routerLink="/registro" routerLinkActive="active" [hidden]="!verifyUsr()">Registro</a></li>
+          <li><a routerLink="/login" routerLinkActive="active" [hidden]="!usrActive">Login</a></li>
+          <li><a routerLink="/registro" routerLinkActive="active" [hidden]="!usrActive">Registro</a></li>
           <li><a routerLink="/mapa" routerLinkActive="active" >Mapa</a></li>
           <li><a routerLink="/vendedores" routerLinkActive="active">Comercios</a></li>
           <li><a routerLink="/productos" routerLinkActive="active">Productos</a></li>
-          <li><a routerLink="/carrito" routerLinkActive="active" [hidden]="verifyCart()">Carrito</a></li>
-          <li><a routerLinkActive="active" (click)="logout()"[hidden]="verifyUsr()">Cerrar Sesión</a></li>
+          <li><a routerLink="/carrito" routerLinkActive="active" [hidden]="usrCliente">Carrito</a></li>
+          <li><a routerLinkActive="active" (click)="logout()" [hidden]="usrActive">Cerrar Sesión</a></li>
           </ul>
       </div>
       <div class="footer-section social">

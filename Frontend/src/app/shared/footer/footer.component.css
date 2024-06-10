@@ -50,6 +50,7 @@ footer {
   
   .footer-section ul li a:hover {
     color: #87BFFF;
+    cursor: pointer;
   }
   
   .footer-section .social-links a {

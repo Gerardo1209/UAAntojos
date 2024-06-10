@@ -16,7 +16,7 @@
                 <div class="vendedor-column" *ngIf="comercio.Edificio"><span class="ver-text">Campus: </span>{{ comercio.Edificio.Nombre ? comercio.Edificio.Nombre : "Sin edificio"  }}  {{ comercio.Edificio.Numero? "Ed." + comercio.Edificio.Numero : ""}}</div>
                 <!--<div class="vendedor-column"><span class="ver-text">Ventas: </span>{{ vendedor.ventas }}</div>-->
                 <div class="vendedor-column">
-                    <button class="ver-productos-btn">Ver sus productos</button>
+                    <button class="ver-productos-btn" (click)="verProductos(comercio)">Ver sus productos</button>
                 </div>
             </div>
         </div>
