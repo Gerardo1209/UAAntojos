@@ -27,7 +27,6 @@ router.post('/login', async(req, res) => {
         }else{
             throw new Error("Hubo un error en login");
         }
-        pool.
         
     }catch(err){
         res.send({success: false, data:err.message});
