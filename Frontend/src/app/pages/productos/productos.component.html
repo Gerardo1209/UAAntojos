@@ -13,14 +13,21 @@
           <option *ngFor="let valor of valores" [value]="valor">{{ valor }}</option>
         </select>
       </div>
-      <div class="product-list">
-        <div class="product-card" *ngFor="let producto of productosFiltrados">
-          <div class="product-details">
-            <h4 class="product-name">{{ producto.Nombre }}</h4>
-            <p class="product-description">{{ producto.Descripcion }}</p>
-            <p class="product-price">{{ producto.Precio | currency }}</p>
-            <button class="product-button" (click)="anadirAlCarrito(producto)">Añadir al Carrito</button>
-          </div>
+      <div class="products-max">
+        <div class="product-list">
+          @if (productosFiltrados.length > 0) {
+            <div class="product-card" *ngFor="let producto of productosFiltrados">
+              <div class="product-details">
+                <h4 class="product-name">{{ producto.Nombre }}</h4>
+                <p class="product-description">{{ producto.Descripcion }}</p>
+                <p class="product-price">{{ producto.Precio | currency }}</p>
+                <button class="product-button" (click)="anadirAlCarrito(producto)">Añadir al Carrito</button>
+              </div>
+            </div>
+          }@else {
+            <h3>Sin productos</h3>
+          }
+          
         </div>
       </div>
     </div>

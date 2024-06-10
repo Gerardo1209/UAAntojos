@@ -9,4 +9,5 @@ export interface Producto {
     Disponible: number;
     modification_time: Date;
     insertion_time: Date;
+    cantidad:number;
 }

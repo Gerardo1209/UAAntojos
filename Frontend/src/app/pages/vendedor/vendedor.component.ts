@@ -29,7 +29,9 @@ export class VendedorComponent implements OnInit {
     { id: 3, name: 'Producto 3', description: 'Descripción del producto 3', price: 200.00 }
   ];
 
-  constructor(private route: ActivatedRoute, private httpService:HttpService) { }
+  constructor(private route: ActivatedRoute, private httpService:HttpService) {
+      
+   }
 
   ngOnInit(): void {
     this.vendorId = +this.route.snapshot.paramMap.get('id')!;

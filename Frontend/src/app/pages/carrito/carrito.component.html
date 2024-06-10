@@ -3,7 +3,7 @@
       <h3>Tu Carrito</h3>
       <div class="cart-list">
         <div class="cart-item" *ngFor="let producto of carrito">
-          <p>{{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}</p>
+          <p>{{ producto.Nombre }} - ${{ producto.Precio }} x {{ producto.cantidad }}</p>
           <button (click)="eliminarProducto(producto)">Eliminar</button>
         </div>
       </div>
@@ -14,7 +14,7 @@
           <div>
             <label for="tipoPago">Pago por:</label>
                 <select id="tipoPago" >
-                    <option *ngFor="let tipo of metodoPago " [value]="tipo" (change)="cambiarPago(tipo)">{{ tipo }}</option>
+                    <option *ngFor="let tipo of metodoPago " [value]="tipo" (change)="cambiarPago(tipo)">{{ tipo.Metodo.toLocaleUpperCase() }}</option>
                   </select>
             
           </div>

@@ -126,12 +126,13 @@
     margin-right: 10px;
   }
   .resumen select option {
-    background-color: #34495e; /* Color de fondo de las opciones */
+    /*background-color: #34495e;  Color de fondo de las opciones */
+    color: black;
     }
 
     .resumen select option:hover {
         background-color: #263a4e; /* Color de fondo de las opciones */
-        color: black;
+        
     }
     @media (max-width: 896px) {
         .resumen {

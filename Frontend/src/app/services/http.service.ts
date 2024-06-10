@@ -11,8 +11,8 @@ import { Categoria } from '../models/categoria.model';
 import { MetodoPago } from '../models/metodoPago.model';
 import { Producto } from '../models/producto.model';
 import { RegistroUsuarioModel } from '../models/registroUsuarioModel';
-import { CrearPedidoModel } from '../models/pedido.model';
-import { CrearDetallePedido } from '../models/pedido.model';
+import { CrearDetallePedidoModel } from '../models/CrearDetallePedidoModel';
+import { CrearPedidoModel } from '../models/crearPedidoModel';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class HttpService {
     return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear", newOrder);
   }
 
-  postCreateDetailOrder( newDetailOrder : CrearDetallePedido ):Observable<ResponseObject<string>>{
+  postCreateDetailOrder( newDetailOrder : CrearDetallePedidoModel ):Observable<ResponseObject<string>>{
     return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear/detalle", newDetailOrder);
   }
 
@@ -141,7 +141,7 @@ export class HttpService {
         if(res.success && typeof res.data == 'object'){
           metodoPago = res.data;
         }else{
-          this.alertService.error("Error al obtener el edificio");
+          this.alertService.error("Error al obtener los tipos de pago");
         }
       });
     }catch(err){

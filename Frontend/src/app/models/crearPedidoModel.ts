@@ -1,5 +1,5 @@
 export interface CrearPedidoModel{
-    IdClietne       : number
+    IdCliente       : number
     IdComercio      : number
     IdMetodoPago    : number
     Latitud         : string

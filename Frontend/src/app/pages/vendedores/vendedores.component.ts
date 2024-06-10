@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpService } from '../../services/http.service'
 import { Comercio } from '../../models/comercio.model';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,  
@@ -18,7 +19,7 @@ export class VendedoresComponent implements OnInit {
   comerciosFilter:Comercio[] = [];
   search:string = "";
 
-  constructor(private httpService:HttpService) { }
+  constructor(private httpService:HttpService,private router:Router) { }
 
   ngOnInit(): void {
     this.filtroComercios();
@@ -42,6 +43,10 @@ export class VendedoresComponent implements OnInit {
         }
       );
     }
+  }
+
+  verProductos(comercio:Comercio){
+    this.router.navigateByUrl('/productos/vendedor/'+comercio.id);
   }
 
   async getComercios(){

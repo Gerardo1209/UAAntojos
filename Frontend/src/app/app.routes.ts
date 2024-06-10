@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: 'vendedores', component: VendedoresComponent },
   { path: 'vendedor/:id', component: VendedorComponent }, 
   { path: 'productos', component: ProductosComponent },
+  { path: 'productos/vendedor/:idVendedor', component: ProductosComponent },
   { path: 'carrito', component: CarritoComponent },
   { path: 'editar-usuario', component: EditarUsuarioComponent },
   { path: 'ventas', component: VentasComponent },

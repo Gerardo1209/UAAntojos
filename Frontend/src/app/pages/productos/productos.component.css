@@ -69,12 +69,12 @@
     margin-left: 10px;
     margin-right: 10px;
   }
-  .filtros select option {
-    background-color: #34495e; /* Color de fondo de las opciones */
-    }
+  .filtros select option { /* Color de fondo de las opciones */
+    color: black;  
+  }
 
     .filtros select option:hover {
-        background-color: #263a4e; /* Color de fondo de las opciones */
+        background-color: #16538f; /* Color de fondo de las opciones */
         color: black;
     }
 
@@ -83,6 +83,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .products-max{
+    max-height: 65vh;
+    min-height: 150px;
+    overflow-y: auto;
   }
   
   .product-card {

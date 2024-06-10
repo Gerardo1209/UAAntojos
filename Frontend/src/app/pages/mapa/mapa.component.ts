@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../../shared/loading/loading.component';
@@ -75,12 +75,14 @@ export class MapaComponent implements AfterViewInit{
       .bindPopup('Estás aquí')
       .openPopup();
 
+    sessionStorage.setItem('locacion', JSON.stringify({lat: lat, lng: lng}));
+
     for(let i = 1; i < this.vendedores.length; i++){
       L.marker([parseFloat(this.vendedores[i].Latitud), parseFloat(this.vendedores[i].Longitud)], { icon: customPin }).addTo(map)
       .bindPopup(
         `Vendedor: ${this.vendedores[i].Nombres} ${this.vendedores[i].ApPaterno}
           <br>
-          Comercio: ${this.vendedores[i].NombreComercio}
+        Comercio: <a href='/productos/vendedor/${this.vendedores[i].IdComercio}'> ${this.vendedores[i].NombreComercio} </a>
         `
       );
     }

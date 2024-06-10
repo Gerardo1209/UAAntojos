@@ -4,31 +4,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Categoria } from '../../models/categoria.model';
 import { HttpService } from '../../services/http.service';
-import { Producto } from '../../models/producto.model';
 import { Vendedor } from '../../models/vendedor.model';
-
-
-/*interface Producto {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  categoria: string;
-  vendedor: string;
-  precio: number;
-  cantidad: number;
-}*/
-
-interface Key{
-    id: number;
-    display:string;
-}
+import { Producto } from '../../models/producto.model';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Comercio } from '../../models/comercio.model';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   selector: 'app-productos',
   templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css']
+  styleUrls: ['./productos.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule]
 })
 export class ProductosComponent implements OnInit {
   /*productos: Producto[] = [
@@ -44,12 +31,23 @@ export class ProductosComponent implements OnInit {
 
   criterioOrdenacion = 'categoria';
   valorOrdenacion = '';
-  valores: Key[] = [];
+  valores: string[] = [];
   productosFiltrados: Producto[] = [];
+  subParams:Subscription|undefined;
+  idComercio:number = 0;
 
-  constructor(private httpService:HttpService) { }
+  constructor(private httpService:HttpService,private route:ActivatedRoute) {
+   }
 
-  ngOnInit(): void {
+  initial:boolean = true;
+  async ngOnInit() {
+    this.subParams = this.route.params.subscribe(async params => {
+      console.log(params)
+      this.idComercio = params['idVendedor'] ? +params['idVendedor'] : 0
+    })
+    await this.getCategorias();
+    await this.getVendedores();
+    await this.getProductos();
     this.actualizarValores();
     this.ordenarProductos();
   }
@@ -62,28 +60,44 @@ export class ProductosComponent implements OnInit {
   productos:Producto[] = [];
   async getProductos(){
     this.productos = await this.httpService.getProductosActivos();
+    this.productos.forEach(prod => {
+      prod.cantidad = 0;
+    });
   }
 
-  vendedores:Vendedor[] = [];
+  comercios:Comercio[] = [];
   async getVendedores(){
-    this.vendedores = await this.httpService.getVendedores();
+    this.comercios = await this.httpService.getComercios();
   }
 
-  actualizarValores() {
+  async actualizarValores() {
+    if(this.idComercio != 0 && this.initial){
+      this.criterioOrdenacion = 'vendedor';
+    }
     if (this.criterioOrdenacion === 'categoria') {
-      this.valores = [...new Set(this.categorias.map(p => {id: p.,display: p.Nombre}))];
+      this.valores = [...new Set(this.categorias.map(p => p.Nombre))];
+      console.log(this.valores)
     } else if (this.criterioOrdenacion === 'vendedor') {
-      this.valores = [...new Set(this.vendedores.map(p => p.NombreComercio))];
+      this.valores = [...new Set(this.comercios.map(p => p.NombreComercial))];
     }
     this.valorOrdenacion = this.valores[0];
+    if(this.idComercio != 0 && this.initial){
+      console.log(this.idComercio)
+      let comercio = this.comercios.find(a => a.id == this.idComercio);
+      console.log(comercio)
+      if(comercio) this.valorOrdenacion = comercio.NombreComercial;
+      
+    }
+    this.initial = false;
+    console.log(this.valorOrdenacion)
     this.ordenarProductos();
   }
 
   ordenarProductos() {
     if (this.criterioOrdenacion === 'categoria') {
-      this.productosFiltrados = this.productos.filter(p => p.categoria === this.valorOrdenacion);
+      this.productosFiltrados = this.productos.filter(p => p.Categoria_idCategoria === this.categorias.find(a=> a.Nombre == this.valorOrdenacion)?.id);
     } else if (this.criterioOrdenacion === 'vendedor') {
-      this.productosFiltrados = this.productos.filter(p => p.vendedor === this.valorOrdenacion);
+      this.productosFiltrados = this.productos.filter(p => p.IdComercio === this.comercios.find(a=> a.NombreComercial == this.valorOrdenacion)?.id);
     }
   }
 
@@ -94,15 +108,26 @@ export class ProductosComponent implements OnInit {
     if (index !== -1) {
       cart[index].cantidad += 1;
     } else {
+      producto.cantidad = 1;
       cart.push({ ...producto });
     }
 
     sessionStorage.setItem('cart', JSON.stringify(cart));
     Swal.fire({
       title: '¡Añadido!',
-      text: `${producto.nombre} ha sido añadido al carrito.`,
+      text: `${producto.Nombre} ha sido añadido al carrito.`,
       icon: 'success',
       confirmButtonText: 'OK'
     });
   }
 }
+
+/*interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  vendedor: string;
+  precio: number;
+  cantidad: number;
+}*/
