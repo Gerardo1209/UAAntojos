@@ -1,8 +1,11 @@
 import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
-const __dirname = import.meta.dirname;
+import path from 'path';
+import { fileURLToPath } from 'url';
 import routerApi from './routes/routes.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(compression());
@@ -17,7 +20,11 @@ app.get('/test', async(req,res)=> {
 
 app.use(express.static(__dirname+'/browser/'))
 
-const port = process.env.PORT || 3000;
+app.get('*', (req, res) => {
+    res.status(200).sendFile(path.resolve(__dirname, 'browser', 'index.html'));
+});
+
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
     console.log("Servidor escuhando en el puerto " + port);

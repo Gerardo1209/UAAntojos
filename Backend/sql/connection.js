@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-dotenv.config({path: __dirname+'\\..\\.env'});
+dotenv.config({path: __dirname+'/../.env'});
 
 const config1 = {
     host: process.env.HOST_DB1,
@@ -30,8 +30,10 @@ crearPool();
 
 export async function crearPool() {
     console.log("Creando pool de conexiones a la base de datos");
+    console.log(__dirname);
+    console.log(config1, config2);
     try {
-        poolConsult = await mysql.createPool({
+    poolConsult = await mysql.createPool({
             ...config1,
             connectionLimit: 20, // Ajusta según tus necesidades
             typeCast: function castField( field, useDefaultTypeCasting ) {
