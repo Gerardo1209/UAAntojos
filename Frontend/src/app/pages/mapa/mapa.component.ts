@@ -1,8 +1,10 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { RouterModule } from '@angular/router';
+import { HttpService } from '../../services/http.service';
+import { Vendedor } from '../../models/vendedor.model';
 
 @Component({
   selector: 'app-mapa',
@@ -11,11 +13,15 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, LoadingComponent, RouterModule]
 })
-export class MapaComponent implements AfterViewInit {
+export class MapaComponent implements AfterViewInit{
   locationAccess = false;
   mapInitialized = false;
+  vendedores:Vendedor[] = [];
 
-  constructor() { }
+
+  constructor(
+    private httpService:HttpService
+  ) { }
 
   ngAfterViewInit(): void {
     this.checkLocationAccess();
@@ -41,7 +47,10 @@ export class MapaComponent implements AfterViewInit {
     }
   }
 
-  initMap(lat: number, lng: number) {
+  async initMap(lat: number, lng: number) {
+    this.vendedores = await this.httpService.getVendedores();
+    console.log(this.vendedores);
+
     const map = L.map('map').setView([lat, lng], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -55,8 +64,25 @@ export class MapaComponent implements AfterViewInit {
       popupAnchor: [0, -38] 
     });
 
+    const customPin = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/149/149059.png',
+      iconSize: [38, 38], 
+      iconAnchor: [19, 38], 
+      popupAnchor: [0, -38] 
+    });
+
     L.marker([lat, lng], { icon: customIcon }).addTo(map)
       .bindPopup('Estás aquí')
       .openPopup();
+
+    for(let i = 1; i < this.vendedores.length; i++){
+      L.marker([parseFloat(this.vendedores[i].Latitud), parseFloat(this.vendedores[i].Longitud)], { icon: customPin }).addTo(map)
+      .bindPopup(
+        `Vendedor: ${this.vendedores[i].Nombres} ${this.vendedores[i].ApPaterno}
+          <br>
+          Comercio: ${this.vendedores[i].NombreComercio}
+        `
+      );
+    }
   }
 }

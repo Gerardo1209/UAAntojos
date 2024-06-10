@@ -13,13 +13,14 @@
       <div class="footer-section links">
         <h2>Links rápidos</h2>
         <ul>
-            <li><a routerLink="/" (click)="scrollToTop()" routerLinkActive="active">Inicio</a></li>
-            <li><a routerLink="/login" (click)="scrollToTop()" routerLinkActive="active">Login</a></li>
-            <li><a routerLink="/registro" (click)="scrollToTop()" routerLinkActive="active">Registro</a></li>
-            <li><a routerLink="/mapa" (click)="scrollToTop()" routerLinkActive="active">Mapa</a></li>
-            <li><a routerLink="/vendedores" (click)="scrollToTop()" routerLinkActive="active">Vendedores</a></li>
-            <li><a routerLink="/productos" (click)="scrollToTop()" routerLinkActive="active">Productos</a></li>
-            <li><a routerLink="/carrito" (click)="scrollToTop()" routerLinkActive="active">Carrito</a></li>
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
+          <li><a routerLink="/login" routerLinkActive="active" [hidden]="!verifyUsr()">Login</a></li>
+          <li><a routerLink="/registro" routerLinkActive="active" [hidden]="!verifyUsr()">Registro</a></li>
+          <li><a routerLink="/mapa" routerLinkActive="active" >Mapa</a></li>
+          <li><a routerLink="/vendedores" routerLinkActive="active">Comercios</a></li>
+          <li><a routerLink="/productos" routerLinkActive="active">Productos</a></li>
+          <li><a routerLink="/carrito" routerLinkActive="active" [hidden]="verifyCart()">Carrito</a></li>
+          <li><a routerLinkActive="active" (click)="logout()"[hidden]="verifyUsr()">Cerrar Sesión</a></li>
           </ul>
       </div>
       <div class="footer-section social">

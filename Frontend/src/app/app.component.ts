@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @Component({
@@ -16,6 +17,15 @@ import { LoadingComponent } from './shared/loading/loading.component';
 export class AppComponent implements OnInit {
   title = 'mi-aplicacion';
   isLoading = true;
+  iniciarSesion = new EventEmitter();
+
+  suscribeToEmmiter(componentRef:Component){
+    if(componentRef instanceof LoginComponent){
+      componentRef.loginEvent.subscribe(()=>{
+        this.iniciarSesion.emit();
+      });
+    }
+  }
 
   ngOnInit() {
     // Simula una carga de datos

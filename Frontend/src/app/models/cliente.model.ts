@@ -6,7 +6,14 @@ export interface Cliente {
     Correo: string;
     Contrasena: string;
     Activo: boolean;
-    modification_time: Date;
-    insertion_time: Date;
+    token: string;
+}
+export interface usuarioLogin {
+    id: number;
+    Nombres: string;
+    ApPaterno: string;
+    ApMaterno: string;
+    tipo: number;
+    Activo: boolean;
     token: string;
 }

@@ -72,6 +72,9 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  button:disabled{
+    background-color: #b4ad99;
+  }
 
   .buttoneditar{
     margin-top: 10px;

@@ -27,7 +27,10 @@ comercio.get('/edificio/:idComercio', async(req, res) => {
         if(!req.params.idComercio) throw new Error("No se ha enviado el id del comercio por la URL");
         const pool = await obtenerPoolConsult();
         const result = await pool.query('CALL api_spGet_consultarEdificiosComercios(?);', [req.params.idComercio]);
-        res.send({success: true, data:result[0][0]});
+        if(!result[0][0][0]){ res.send({success: true, data:{}}); }
+        else { res.send({success: true, data:result[0][0][0]}); }
+        
+
     }catch(err){
         res.send({success: false, data:err.message});
     }

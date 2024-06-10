@@ -92,6 +92,7 @@ body, html {
     font-weight: bolder;
     display: none;
 }
+
 @media (max-width: 768px) {
     .ver-text{
         display: contents;
@@ -121,4 +122,19 @@ body, html {
         width: 100%;
         margin-top: 10px;
     }
+}
+
+.vendor-container{
+    min-height: 150px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.search-input{
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: large;
+    color: black !important;
 }
