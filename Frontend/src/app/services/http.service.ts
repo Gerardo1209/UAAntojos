@@ -13,6 +13,8 @@ import { Producto } from '../models/producto.model';
 import { RegistroUsuarioModel } from '../models/registroUsuarioModel';
 import { CrearDetallePedidoModel } from '../models/CrearDetallePedidoModel';
 import { CrearPedidoModel } from '../models/crearPedidoModel';
+import { Pedido } from '../models/pedido.model';
+import { DetallePedido } from '../models/detallePedido.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +38,7 @@ export class HttpService {
   }
 
   postCreateDetailOrder( newDetailOrder : CrearDetallePedidoModel ):Observable<ResponseObject<string>>{
-    return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear/detalle", newDetailOrder);
+    return this.httpClient.post<ResponseObject<string>>(this.baseURL+"/pedido/crear/detalles", newDetailOrder);
   }
 
 
@@ -168,6 +170,61 @@ export class HttpService {
     }
     return categoria;
   }
+
+  async getPedidosCliente(id:number):Promise<Pedido[]>{
+    let pedido: Pedido[] = [];
+    try{
+      await (<Observable<ResponseObject<Pedido[]>>> this.httpClient.get(this.baseURL + "/pedido/cliente/"+id))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          pedido = res.data;
+        }else{
+          this.alertService.error("Error al obtener los pedidos de cliente");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return pedido;
+   }
+   async getPedidosVendedor(id:number):Promise<Pedido[]>{
+    let pedido: Pedido[] = [];
+    try{
+      await (<Observable<ResponseObject<Pedido[]>>> this.httpClient.get(this.baseURL + "/pedido/comercio/"+id))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          pedido = res.data;
+        }else{
+          this.alertService.error("Error al obtener los pedidos del comercio");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return pedido;
+   }
+
+   async getDetallePedido(id:number):Promise<DetallePedido[]>{
+    let pedido: DetallePedido[] = [];
+    try{
+      await (<Observable<ResponseObject<DetallePedido[]>>> this.httpClient.get(this.baseURL + "/pedido/detalle/"+id))
+      .forEach(res => {
+        if(res.success && typeof res.data == 'object'){
+          pedido = res.data;
+        }else{
+          this.alertService.error("Error al obtener los pedidos de cliente");
+        }
+      });
+    }catch(err){
+      console.error(err);
+      //this.alertService.error(err);
+    }
+    return pedido;
+   }
+
+  
 
   login(correo:string, contra:string,token:string="token100%realnofake" ):Observable<any>{
     return this.httpClient.post<usuarioLogin>(this.baseURL+"/login", { correo, contra, token });

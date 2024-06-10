@@ -18,13 +18,16 @@ router.post('/login', async(req, res) => {
     try{
         console.log(req.body)
         const pool = await obtenerPoolUpdate();
+        console.log("Hola");
         const result = await pool.query('CALL api_spGet_autenticacionUsuario(?,?,?)',[req.body.correo,req.body.contra,req.body.token]);
+        console.log("Hola");
         console.log(result[0]);
         if(result[0][0][0]){
             res.send({success: true, data:result[0][0]});
         }else{
             throw new Error("Hubo un error en login");
         }
+        pool.
         
     }catch(err){
         res.send({success: false, data:err.message});

@@ -39,6 +39,7 @@ export class LoginComponent {
       this.authService.login(correo, contra).subscribe(
         response => {
           if (response) {
+            console.log(response)
             console.log('Login exitoso', response.data[0]);
               user ={
                 id:response.data[0].id,
@@ -51,22 +52,24 @@ export class LoginComponent {
               }
               console.log(user.tipo)
               if(user.tipo == 0){
-                this.alert.error("Error en el usuario o contraseña, por favor intentelo de nuevo");
+                this.alert.danger("Error en el usuario o contraseña, por favor intentelo de nuevo");
                 this.form.reset();
               }
-              if(user.tipo == 1){
+              else if(user.tipo == 1){
                 this.alert.success("Inicio de sesión correcto");
                 var usrJSON = JSON.stringify(user)
                 sessionStorage.setItem("usr",usrJSON)
                 this.loginEvent.emit();
                 this.router.navigateByUrl("/mapa")
               }
-              if(user.tipo == 2){
+              else if(user.tipo == 2){
                 this.alert.success("Inicio de sesión correcto");
                 var usrJSON = JSON.stringify(user)
                 sessionStorage.setItem("usr",usrJSON)
                 this.loginEvent.emit();
                 this.router.navigateByUrl("/")
+              }else{
+                this.alert.error("Ocurrio un error al iniciar sesión");
               }
               this.loading = false;
             // Manejar el éxito del login, por ejemplo, redirigir al dashboard

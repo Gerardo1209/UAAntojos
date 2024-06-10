@@ -13,10 +13,9 @@
           </div>
           <div>
             <label for="tipoPago">Pago por:</label>
-                <select id="tipoPago" >
-                    <option *ngFor="let tipo of metodoPago " [value]="tipo" (change)="cambiarPago(tipo)">{{ tipo.Metodo.toLocaleUpperCase() }}</option>
-                  </select>
-            
+            <select id="tipoPago" [(ngModel)]="tipoPago" (change)="cambiarPago($event)">
+              <option *ngFor="let tipo of metodoPago" [ngValue]="tipo">{{ tipo.Metodo.toLocaleUpperCase() }}</option>
+            </select>
           </div>
           <div class="btns">
             <button class="pay-button" (click)="pagarCarritos()">Pagar</button>

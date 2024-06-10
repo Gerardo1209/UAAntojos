@@ -6,6 +6,7 @@ import { HttpService } from '../../services/http.service';
 import { MetodoPago } from '../../models/metodoPago.model';
 import { CrearPedidoModel } from '../../models/crearPedidoModel';
 import { Producto } from '../../models/producto.model';
+import { CrearDetallePedidoModel } from '../../models/CrearDetallePedidoModel';
 
 /*interface Producto {
   id: number;
@@ -74,10 +75,12 @@ export class CarritoComponent implements OnInit {
       confirmButtonText: 'OK'
     });
   }
-  cambiarPago(tipo:MetodoPago){
-    this.tipoPago = tipo;
+  cambiarPago(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedIndex = selectElement.selectedIndex;
+    this.tipoPago = this.metodoPago[selectedIndex];
+    console.log('Método de pago seleccionado:', this.tipoPago);
   }
-
   pagarCarritos(){
     let user
     let locData
@@ -85,6 +88,14 @@ export class CarritoComponent implements OnInit {
     let location = sessionStorage.getItem('locacion');
     let lat !: string;
     let lng !: string;
+    let pedido : number;
+    let dataUser = sessionStorage.getItem('usr');
+    var crearPedido!: CrearPedidoModel;
+    let idComercio !: number;
+    let idCliente !: number;
+    let Latitud !: string;    
+    let carritoItem : CrearDetallePedidoModel;
+    let lengthCarro : number = 0;
     if (location){
       locData = JSON.parse(location);
       lat = locData.lat;
@@ -93,17 +104,13 @@ export class CarritoComponent implements OnInit {
       lat = '21.9419';
       lng = '-102.2756'
     }
-    let dataUser = localStorage.getItem('usr');
-    var crearPedido!: CrearPedidoModel;
-    let idComercio !: number;
-    let idCliente !: number;
-    let Latitud !: string
+
     if (dataUser){
       user = JSON.parse(dataUser);
       idCliente = user.id;
       Latitud = user.Latitud
     }
-    idCliente = this.carrito[0].IdComercio
+    idComercio = this.carrito[0].IdComercio
     crearPedido = {
       IdCliente : idCliente,
       IdComercio : idComercio,
@@ -112,10 +119,35 @@ export class CarritoComponent implements OnInit {
       Longitud :lng,
       Token : token
     }
-    console.log(crearPedido);
     
     this.httpClient.postCreateOrder(crearPedido).subscribe(response =>{
-      console.log(response);
+      pedido = +this.obtenerPedido(response.data);
+      this.carrito.forEach( carro =>{
+        carritoItem = {
+          IdPedido : pedido,
+          IdProducto : carro.id,
+          Cantidad : carro.cantidad
+        }
+        this.httpClient.postCreateDetailOrder( carritoItem).subscribe(responseCarrito =>{
+          lengthCarro++;
+          if(lengthCarro == this.carrito.length){
+            this.carrito = [];
+            sessionStorage.removeItem('cart');
+            this.calcularTotal();
+            Swal.fire({
+              title: 'Pedido Realizado',
+              text: 'Se realizo un pedido con todos tu productos',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          }
+        })
+      })      
     })
+  }
+
+  obtenerPedido(cadena: string): string {
+    const peidido = cadena.match(/\d+/g);
+    return peidido ? peidido.join('') : '';
   }
 }

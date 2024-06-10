@@ -33,7 +33,7 @@ export async function crearPool() {
     try {
         poolConsult = await mysql.createPool({
             ...config1,
-            connectionLimit: 10, // Ajusta según tus necesidades
+            connectionLimit: 20, // Ajusta según tus necesidades
             typeCast: function castField( field, useDefaultTypeCasting ) {
                 // We only want to cast bit fields that have a single-bit in them. If the field
                 // has more than one bit, then we cannot assume it is supposed to be a Boolean.
@@ -52,7 +52,7 @@ export async function crearPool() {
         console.log("Pool de conexion a consultas creado correctamente");
         poolUpdate = await mysql.createPool({
             ...config2,
-            connectionLimit: 10, // Ajusta según tus necesidades
+            connectionLimit: 20, // Ajusta según tus necesidades
             typeCast: function castField( field, useDefaultTypeCasting ) {
                 // We only want to cast bit fields that have a single-bit in them. If the field
                 // has more than one bit, then we cannot assume it is supposed to be a Boolean.

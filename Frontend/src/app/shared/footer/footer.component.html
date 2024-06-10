@@ -19,6 +19,7 @@
           <li><a routerLink="/mapa" routerLinkActive="active" >Mapa</a></li>
           <li><a routerLink="/vendedores" routerLinkActive="active">Comercios</a></li>
           <li><a routerLink="/productos" routerLinkActive="active">Productos</a></li>
+          <li><a routerLink="/ventas" routerLinkActive="active" [hidden]="usrActive">Pedidos</a></li>
           <li><a routerLink="/carrito" routerLinkActive="active" [hidden]="usrCliente">Carrito</a></li>
           <li><a routerLinkActive="active" (click)="logout()" [hidden]="usrActive">Cerrar Sesión</a></li>
           </ul>
